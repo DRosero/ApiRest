@@ -37,14 +37,19 @@ public class UserService {
         }
     }
 
-    public UserModel actualizarUsuarioporId(UserModel entidadPeticion, Long id){
+    /*public UserModel actualizarUsuarioporId(UserModel entidadPeticion, Long id){
         UserModel userActualizar=iUserRepository.findById(id).get();
         userActualizar.setNombre_user(entidadPeticion.getNombre_user());
         userActualizar.setApellido_user(entidadPeticion.getApellido_user());
         userActualizar.setTelefono_user(entidadPeticion.getTelefono_user());
         iUserRepository.save(userActualizar);
         return userActualizar;
+    }*/
+
+    public void actualizarUsuarioporId(UserModel entidadPeticion, Long id){
+        UserModel userActualizar;
+        userActualizar=entidadPeticion;
+        userActualizar.setId_user(id);
+        guardarUser(userActualizar);
     }
-
-
 }

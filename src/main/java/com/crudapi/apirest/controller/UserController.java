@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/usuarios")
 public class UserController {
 
     @Autowired
@@ -31,9 +31,14 @@ public class UserController {
         return userService.guardarUser(user);
     }
 
-    @PutMapping(path="/{id}")
+    /*@PutMapping(path="/{id}")
     public UserModel actualizarUsuarioporID(@RequestBody UserModel userModelActualizar, @PathVariable("id") Long id ){
         return userService.actualizarUsuarioporId(userModelActualizar,id);
+    }*/
+
+    @PutMapping(path="/{id}")
+    public void actualizarUsuarioporID(@RequestBody UserModel userModelActualizar, @PathVariable("id") Long id ){
+        userService.actualizarUsuarioporId(userModelActualizar,id);
     }
 
     @DeleteMapping(path="/{id}")
@@ -46,12 +51,4 @@ public class UserController {
             System.out.println("El usuario no fue borrado");
         }
     }
-
-
-
-
-
-
-
-
 }

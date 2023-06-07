@@ -22,8 +22,28 @@ public class UserService {
         return iUserRepository.findById(id);
     }
 
-    public void borrarUsuario(Long id){
-        iUserRepository.deleteById(id);
+    public UserModel guardarUser(UserModel user){
+        return iUserRepository.save(user);
+    }
+
+    public boolean borrarUsuario(Long id){
+        try {
+            iUserRepository.deleteById(id);
+            return true;
+        }
+        catch (Exception e){
+            System.out.println("Error al borrar user "+ e.getMessage());
+            return false;
+        }
+    }
+
+    public UserModel actualizarUsuarioporId(UserModel entidadPeticion, Long id){
+        UserModel userActualizar=iUserRepository.findById(id).get();
+        userActualizar.setNombre_user(entidadPeticion.getNombre_user());
+        userActualizar.setApellido_user(entidadPeticion.getApellido_user());
+        userActualizar.setTelefono_user(entidadPeticion.getTelefono_user());
+        iUserRepository.save(userActualizar);
+        return userActualizar;
     }
 
 
